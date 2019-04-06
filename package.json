@@ -1,0 +1,19 @@
+{
+  "name": "jobify",
+  "version": "1.0.0",
+  "description": "Jobify is a simple job board for sites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jobify",
+    "job"
+  ],
+  "author": "Marcus Pereira <marcus.work@hotmail.com> (https://github.com/marcuspereiradev)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "gitignore": "^0.6.0"
+  }
+}
