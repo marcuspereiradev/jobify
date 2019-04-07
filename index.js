@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+
 app.get('/', (request, response) => {
-  console.log(new Date()); // Apenas para mostrar a hora que o request foi feito.
-  response.send('Hello, Marcus!');
+  response.render('home', {
+    date: new Date()
+  })
 });
 
 app.listen(3000, 'localhost', (err) => {

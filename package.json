@@ -13,6 +13,7 @@
   "author": "Marcus Pereira <marcus.work@hotmail.com> (https://github.com/marcuspereiradev)",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "gitignore": "^0.6.0"
   }
