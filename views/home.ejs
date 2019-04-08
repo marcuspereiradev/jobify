@@ -1,10 +1,12 @@
   <%- include('header') %>
   <h2>Open Roles:</h2>
-  <% categorias.forEach( categoria => { %>
+  <% categories.forEach( category => { %>
     <div>
-      <h3><%- categoria.categoria %></h3>
+      <h3><%- category.category %></h3>
       <ul>
-        <li><a href="vaga">Fullstack Developer (Remote)</a></li>
+        <% category.vacancies.forEach( vacancy => { %>
+          <li><a href="vacancy"><%-vacancy.title %></a></li>
+        <% }) %>
       </ul>
     </div>
   <% }) %>
