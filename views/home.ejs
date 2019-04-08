@@ -5,7 +5,7 @@
       <h3><%- category.category %></h3>
       <ul>
         <% category.vacancies.forEach( vacancy => { %>
-          <li><a href="vacancy"><%-vacancy.title %></a></li>
+          <li><a href="vacancy/<%- vacancy.id %>"><%- vacancy.title %></a></li>
         <% }) %>
       </ul>
     </div>

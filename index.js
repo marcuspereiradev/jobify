@@ -24,8 +24,13 @@ app.get('/', async (request, response) => {
   })
 });
 
-app.get('/vacancy', (request, response) => {
-  response.render('vacancy')
+app.get('/vacancy/:id', async (request, response) => {
+  const db = await dbConnection;
+  const vacancy = await db.get(`SELECT * FROM vacancies WHERE id = ${request.params.id}`);
+
+  response.render('vacancy', {
+    vacancy
+  })
 });
 
 const init = async() => {

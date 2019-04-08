@@ -22,5 +22,11 @@ ul {
 }
 
 footer {
+  bottom: 0px;
+  left: 0px;
+  margin-bottom: 0px;
+  padding: 10px;
+  position: fixed;
+  right: 0px;
   text-align: center;
 }
