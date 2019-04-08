@@ -1,0 +1,19 @@
+  <%- include('header') %>
+  <h2>
+    New Vacancy |
+    <a href="/admin/vacancies">Vacancy</a>
+  </h2>
+  <form action="" method="POST" class="new-vacancy-form">
+    <label for="">Title:</label>
+    <input type="text" name="title">
+    <label for="">Description:</label>
+    <textarea name="description" id="" cols="30" rows="10"></textarea>
+    <label for="">Category:</label>
+    <select name="category" id="">
+      <option value="">Engineer</option>
+      <option value="">Marketing</option>
+    </select>
+    <button>Save Vacancy</button>
+  </form>
+  <%- include('footer') %>
+  

@@ -7,7 +7,7 @@ const dbConnection = sqlite.open('db.sqlite', { Promise });
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-app.get('/', async (request, response) => {
+app.get('/', async(request, response) => {
   const db = await dbConnection;
   const categoriesDb = await db.all('SELECT * FROM categories;');
   const vacancies = await db.all('SELECT * FROM vacancies;');
@@ -24,13 +24,35 @@ app.get('/', async (request, response) => {
   })
 });
 
-app.get('/vacancy/:id', async (request, response) => {
+app.get('/vacancy/:id', async(request, response) => {
   const db = await dbConnection;
   const vacancy = await db.get(`SELECT * FROM vacancies WHERE id = ${request.params.id}`);
 
   response.render('vacancy', {
     vacancy
   })
+});
+
+app.get('/admin', (request, response) => {
+  response.render('admin/home')
+});
+
+app.get('/admin/vacancies', async(request, response) => {
+  const db = await dbConnection;
+  const vacancies = await db.all('SELECT * FROM vacancies;');
+  response.render('admin/vacancies', {
+    vacancies
+  })
+});
+
+app.get('/admin/vacancies/delete/:id', async(request, response) => {
+  const db = await dbConnection;
+  await db.run(`DELETE FROM vacancies WHERE id = ${request.params.id}`);
+  response.redirect('/admin/vacancies');
+});
+
+app.get('/admin/vacancies/new', async(request, response) => {
+  response.render('admin/new-vacancy');
 });
 
 const init = async() => {

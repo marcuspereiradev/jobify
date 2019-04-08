@@ -30,3 +30,26 @@ footer {
   right: 0px;
   text-align: center;
 }
+
+.new-vacancy-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.new-vacancy-form label {
+  font-weight: bold;
+  margin: 20px 0 5px 0;
+}
+
+.new-vacancy-form input, textarea, select, button {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.new-vacancy-form button {
+  align-self: center;
+  max-width: 25%;
+  margin-top: 20px;
+}
