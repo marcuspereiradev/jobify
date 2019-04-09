@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const sqlite = require('sqlite');
 const dbConnection = sqlite.open('db.sqlite', { Promise });
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get('/', async(request, response) => {
   const db = await dbConnection;
@@ -53,6 +55,10 @@ app.get('/admin/vacancies/delete/:id', async(request, response) => {
 
 app.get('/admin/vacancies/new', async(request, response) => {
   response.render('admin/new-vacancy');
+});
+
+app.post('/admin/vacancies/new', async(request, response) => {
+  response.send(request.body);
 });
 
 const init = async() => {
