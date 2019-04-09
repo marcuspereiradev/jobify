@@ -68,6 +68,25 @@ app.post('/admin/vacancies/new', async(request, response) => {
   response.redirect('/admin/vacancies');
 });
 
+app.get('/admin/vacancies/edit/:id', async(request, response) => {
+  const db = await dbConnection;
+  const { id } = request.params
+  const categories = await db.all('SELECT * FROM categories');
+  const vacancies = await db.get(`SELECT * FROM vacancies WHERE id = ${id}`)
+  response.render('admin/edit-vacancy', {
+    categories,
+    vacancies
+  });
+});
+
+app.post('/admin/vacancies/edit/:id', async(request, response) => {
+  const { title, description, category } = request.body;
+  const { id } = request.params
+  const db = await dbConnection;
+  await db.run(`UPDATE vacancies SET category = ${category}, title = '${title}', description = '${description}' WHERE id = ${id}`);
+  response.redirect('/admin/vacancies');
+});
+
 const init = async() => {
   const db = await dbConnection;
   await db.run('CREATE TABLE if not exists categories (id INTEGER PRIMARY KEY, category TEXT);');
