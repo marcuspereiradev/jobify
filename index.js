@@ -58,7 +58,10 @@ app.get('/admin/vacancies/new', async(request, response) => {
 });
 
 app.post('/admin/vacancies/new', async(request, response) => {
-  response.send(request.body);
+  const { title, description, category } = request.body;
+  const db = await dbConnection;
+  await db.run(`INSERT INTO vacancies(category, title, description) VALUES(${category}, '${title}', '${description}')`);
+  response.redirect('/admin/vacancies');
 });
 
 const init = async() => {
