@@ -54,7 +54,11 @@ app.get('/admin/vacancies/delete/:id', async(request, response) => {
 });
 
 app.get('/admin/vacancies/new', async(request, response) => {
-  response.render('admin/new-vacancy');
+  const db = await dbConnection;
+  const categories = await db.all('SELECT * FROM categories');
+  response.render('admin/new-vacancy', {
+    categories
+  });
 });
 
 app.post('/admin/vacancies/new', async(request, response) => {

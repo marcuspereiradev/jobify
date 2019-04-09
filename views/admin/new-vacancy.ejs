@@ -10,8 +10,9 @@
     <textarea name="description" cols="30" rows="10"></textarea>
     <label>Category:</label>
     <select name="category">
-      <option value="1">Engineer</option>
-      <option value="2">Marketing</option>
+      <% categories.forEach( category => { %>
+        <option value="<%- category.id %>"><%- category.category %></option>
+      <% })%>
     </select>
     <button>Save Vacancy</button>
   </form>
