@@ -98,6 +98,14 @@ app.post('/admin/vacancies/edit/:id', async(request, response) => {
   response.redirect('/admin/vacancies');
 });
 
+app.get('/admin/categories', async(request, response) => {
+  const db = await dbConnection;
+  const categories = await db.all('SELECT * FROM categories;');
+  response.render('admin/categories', {
+    categories
+  })
+});
+
 const init = async() => {
   const db = await dbConnection;
   await db.run('CREATE TABLE if not exists categories (id INTEGER PRIMARY KEY, category TEXT);');
