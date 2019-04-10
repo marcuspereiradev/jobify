@@ -112,6 +112,21 @@ app.get('/admin/categories/delete/:id', async(request, response) => {
   response.redirect('/admin/categories');
 });
 
+app.get('/admin/categories/new', async(request, response) => {
+  const db = await dbConnection;
+  const categories = await db.all('SELECT * FROM categories;');
+  response.render('admin/new-category', {
+    categories
+  });
+});
+
+app.post('/admin/categories/new', async(request, response) => {
+  const { category } = request.body;
+  const db = await dbConnection;
+  await db.run(`INSERT INTO categories(category) VALUES('${category}')`);
+  response.redirect('/admin/categories');
+});
+
 const init = async() => {
   const db = await dbConnection;
   await db.run('CREATE TABLE if not exists categories (id INTEGER PRIMARY KEY, category TEXT);');
