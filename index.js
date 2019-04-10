@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const sqlite = require('sqlite');
-const dbConnection = sqlite.open('db.sqlite', { Promise });
-
+const dbConnection = sqlite.open(path.resolve(__dirname, 'db.sqlite'), { Promise });
 const port = process.env.PORT || 3000
 
 app.set('view engine', 'ejs');
