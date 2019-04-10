@@ -127,6 +127,23 @@ app.post('/admin/categories/new', async(request, response) => {
   response.redirect('/admin/categories');
 });
 
+app.get('/admin/categories/edit/:id', async(request, response) => {
+  const { id } = request.params
+  const db = await dbConnection;
+  const categories = await db.get(`SELECT * FROM categories WHERE id = ${id}`)
+  response.render('admin/edit-category', {
+    categories
+  });
+});
+
+app.post('/admin/categories/edit/:id', async(request, response) => {
+  const { category } = request.body;
+  const { id } = request.params;
+  const db = await dbConnection;
+  await db.run(`UPDATE categories SET category = '${category}' WHERE id = ${id}`);
+  response.redirect('/admin/categories');
+});
+
 const init = async() => {
   const db = await dbConnection;
   await db.run('CREATE TABLE if not exists categories (id INTEGER PRIMARY KEY, category TEXT);');
