@@ -106,6 +106,12 @@ app.get('/admin/categories', async(request, response) => {
   })
 });
 
+app.get('/admin/categories/delete/:id', async(request, response) => {
+  const db = await dbConnection;
+  await db.run(`DELETE FROM categories WHERE id = ${request.params.id}`);
+  response.redirect('/admin/categories');
+});
+
 const init = async() => {
   const db = await dbConnection;
   await db.run('CREATE TABLE if not exists categories (id INTEGER PRIMARY KEY, category TEXT);');
